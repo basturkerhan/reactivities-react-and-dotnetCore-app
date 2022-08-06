@@ -82,7 +82,7 @@ const Account = {
 }
 
 const Profiles = {
-    get: (username:string) => requests.get<Profile>('/profiles/' + username),
+    get: (username:string) => requests.get<Profile>('/profile/' + username),
     uploadPhoto: (file:Blob) => {
         let formData = new FormData();
         formData.append("File", file);
@@ -92,7 +92,8 @@ const Profiles = {
     },
     
     setMainPhoto: (id:string) => requests.post(`/photos/${id}/setMain`, {}),
-    deletePhoto : (id:string) => requests.del(`/photos/${id}`)
+    deletePhoto : (id:string) => requests.del(`/photos/${id}`),
+    updateProfile: (profile:Partial<Profile>) => requests.put('/profile', profile)
 }
 
 const agent = {
