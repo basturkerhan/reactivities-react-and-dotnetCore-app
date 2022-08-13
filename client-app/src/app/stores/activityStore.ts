@@ -179,6 +179,17 @@ export default class ActivityStore {
         }
     }
 
+    updateAttendeeFollowing = async (username:string) => {
+        this.activityRegistry.forEach(activity => {
+            activity.attendees.forEach(attendee => {
+                if(attendee.username === username) {
+                    attendee.isFollowing ? attendee.followingCount-- : attendee.followingCount++;
+                    attendee.isFollowing = !attendee.isFollowing;
+                }
+            });
+        });
+    }
+
     clearSelectedActivity = () => {
         this.selectedActivity = undefined;
     }
